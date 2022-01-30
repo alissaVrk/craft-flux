@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { login as serverLogin } from 'modules/auth/data/actions';
-import { Operator } from 'modules/global-data';
+import { initOrchestrator } from 'modules/global-data';
+import { setAuthDataDB } from 'core/axios-defaults';
+import { v4 as uuidv4 } from 'uuid';
 
+
+const sessionId = uuidv4();
 function App() {
-  const [operator, setOperator] = useState<Operator>()
   async function login(){
-    const {userInfo} = await serverLogin();
-    setOperator(new Operator(userInfo));
+    const {userInfo, token} = await serverLogin();
+    setAuthDataDB({
+      sessionId: sessionId,
+      token,
+      userId: userInfo.id
+    })
+    console.log("UUUU", userInfo)
+    const state = await initOrchestrator(userInfo);
+    console.log("SSSS", state);
   }
 
   return (

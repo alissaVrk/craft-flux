@@ -1,10 +1,10 @@
-import { SimpleReactiveStore } from "./SimpleReactiveStore";
+import { createSimpleReactiveStore } from "./SimpleReactiveStore";
 import { renderHook } from '@testing-library/react-hooks'
 import { act } from "react-dom/test-utils";
 
 describe("SimpleReactiveStore", () => {
     it("should return undefined if no value was set", () => {
-        const store = new SimpleReactiveStore();
+        const store = createSimpleReactiveStore();
         const path = "some.path";
 
         const state = renderHook(() => store.useValue(path));
@@ -12,7 +12,7 @@ describe("SimpleReactiveStore", () => {
     });
 
     it("should return default value if default value passed", () => {
-        const store = new SimpleReactiveStore();
+        const store = createSimpleReactiveStore();
         const path = "some.path";
 
         const state = renderHook(() => store.useValue(path, 4));
@@ -20,7 +20,7 @@ describe("SimpleReactiveStore", () => {
     })
 
     it("should useValue as set", () => {
-        const store = new SimpleReactiveStore();
+        const store = createSimpleReactiveStore();
         const path = "some.path";
         const state = renderHook(() => store.useValue(path));
 
@@ -30,7 +30,7 @@ describe("SimpleReactiveStore", () => {
     });
 
     it("should update multiple times", () => {
-        const store = new SimpleReactiveStore();
+        const store = createSimpleReactiveStore();
         const path = "some.path";
         const state = renderHook(() => store.useValue(path));
 
@@ -42,7 +42,7 @@ describe("SimpleReactiveStore", () => {
     });
 
     it("should NOT use internal value", () => {
-        const store = new SimpleReactiveStore();
+        const store = createSimpleReactiveStore();
         const path = "some.path";
         const state = renderHook(() => store.useValue(`${path}.a`));
 
@@ -52,7 +52,7 @@ describe("SimpleReactiveStore", () => {
     });
 
     it("should use the value in multiple components", () => {
-        const store = new SimpleReactiveStore();
+        const store = createSimpleReactiveStore();
         const path = "some.path";
         const state1 = renderHook(() => store.useValue(path));
         const state2 = renderHook(() => store.useValue(path));

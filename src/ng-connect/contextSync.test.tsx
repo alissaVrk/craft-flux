@@ -1,5 +1,5 @@
-import { render, fireEvent, waitFor, screen } from "@testing-library/react";
-import { SimpleReactiveStore } from "data-structures";
+import { render, fireEvent } from "@testing-library/react";
+import { createSimpleReactiveStore } from "data-structures";
 import { noop } from "lodash";
 import React, { useContext, useMemo, useState } from "react";
 import {ContextListener, LinkProvider} from "./contextSync";
@@ -32,14 +32,14 @@ describe("contextSync", () => {
             </div>)            
         };
 
-        const store = new SimpleReactiveStore();
+        const store = createSimpleReactiveStore();
         const MainConteiner = () => (
             <CounterProvider>
                         <ContextListener path="test" simpleStore={store} context={Context} />
                     </CounterProvider>
         )
         const Container = ({testID}: {testID: string}) => (
-            <LinkProvider path="test" simpleStore={store} context={Context} defaultValue={defaultValue}>
+            <LinkProvider path="test" simpleStore={store} context={Context} defaultContextValue={defaultValue}>
                 <CounterComponent testID={testID}/>
             </LinkProvider>
         )

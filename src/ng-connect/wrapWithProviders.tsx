@@ -1,7 +1,7 @@
-import { SimpleReactiveStore } from "data-structures";
+import { createSimpleReactiveStore } from "data-structures";
 import ReactDOM from "react-dom";
 
-const store = new SimpleReactiveStore();
+const store = createSimpleReactiveStore();
 
 type CompType = (...args: any) => JSX.Element | null;
 

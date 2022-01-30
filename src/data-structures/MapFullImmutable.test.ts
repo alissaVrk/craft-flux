@@ -6,10 +6,10 @@ type TestItem = {
 }
 
 describe("MapFullImmutable", () => {
-    let map: MapFullImmutable<TestItem>;
+    let map: MapFullImmutable<string, TestItem>;
 
     beforeEach(() => {
-        map = new MapFullImmutable<TestItem>();
+        map = new MapFullImmutable<string, TestItem>();
         map.init([{id: "1", name: "aaa"}]);
     })
     it("should add items", () => {

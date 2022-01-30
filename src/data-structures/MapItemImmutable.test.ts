@@ -23,12 +23,12 @@ describe("MapItemImmutable", () => {
         });
 
         it("should throw on update before init", () => {
-            const map = new MapItemImmutable<TestItem>();
+            const map = new MapItemImmutable<string, TestItem>();
             expect(() => map.updateItems([{ id: "1", name: "yossi" }])).toThrow("you need initialize your data first");
         });
 
         it("should init with items", () => {
-            const map = new MapItemImmutable<TestItem>();
+            const map = new MapItemImmutable<string, TestItem>();
             map.init([{ id: "1", name: "yossi" }, { id: "2", name: "moshe" }]);
 
             expect(map.items?.get("2")).toEqual({ id: "2", name: "moshe" });
@@ -36,9 +36,9 @@ describe("MapItemImmutable", () => {
     });
 
     describe("operations", () => {
-        let map: MapItemImmutable<TestItem>;
+        let map: MapItemImmutable<string, TestItem>;
         beforeEach(() => {
-            map = new MapItemImmutable<TestItem>();
+            map = new MapItemImmutable<string, TestItem>();
             map.init([{ id: "1", name: "yossi" }]);
         });
 
