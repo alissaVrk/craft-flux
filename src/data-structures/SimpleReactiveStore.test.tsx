@@ -9,7 +9,16 @@ describe("SimpleReactiveStore", () => {
 
         const state = renderHook(() => store.useValue(path));
         expect(state.result.current).toBeUndefined();
+    });
+
+    it("should return default value if default value passed", () => {
+        const store = new SimpleReactiveStore();
+        const path = "some.path";
+
+        const state = renderHook(() => store.useValue(path, 4));
+        expect(state.result.current).toBe(4);
     })
+
     it("should useValue as set", () => {
         const store = new SimpleReactiveStore();
         const path = "some.path";

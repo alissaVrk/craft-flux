@@ -14,8 +14,8 @@ export class SimpleReactiveStore {
         listeners.forEach(li => li(value));
     }
 
-    public useValue(path: string) {
-        const [value, setValue] = useState(this.data.get(path));
+    public useValue<T>(path: string, defaultValue?: T) {
+        const [value, setValue] = useState(this.data.get(path) || defaultValue);
 
         useEffect(() => {
             if (!this.registry.has(path)) {
