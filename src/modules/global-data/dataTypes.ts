@@ -28,20 +28,3 @@ export type UserPrefs = {
     selectedProduct?: string
 }
 
-export type Libs = {
-    producs: MapFullImmutable<WorkSpace>,
-    userPrefs: UserPrefs | undefined,
-    items: MapItemImmutable<Item>,
-    user: User
-}
-
-
-
-export type LibConfig<K extends keyof Libs, Deps extends keyof Libs | never > = {
-    dependencies: Deps[],
-    init: () => Libs[K],
-    handleDependencyChange: (
-        deps: {[key in Deps]: Readonly<Libs[key]>}, 
-        itemsMap: Libs[K] 
-    ) => Promise<Libs[K]>
-}

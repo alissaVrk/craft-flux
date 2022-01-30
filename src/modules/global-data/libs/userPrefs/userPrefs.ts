@@ -1,10 +1,10 @@
 import { uniqueId } from "lodash";
 import { fetchSelectedWorkSpace } from "./userPrefsDB";
-import { LibConfig } from "../../types";
+import { LibConfig, Libs } from "../../LibsTypes";
 
 export const name = uniqueId("userPrefs_");
 
-export const libConfig: LibConfig<"userPrefs", never> = {
+export const libConfig: LibConfig<Libs["userPrefs"], Libs, never> = {
     dependencies: [],
 
     init: () => undefined,

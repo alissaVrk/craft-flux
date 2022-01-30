@@ -1,5 +1,5 @@
 import { arrayToMap } from "modules/global-data/dataStructureUtils";
-import { User, Item } from "../../types";
+import { User, Item } from "../../dataTypes";
 import {libConfig} from "./items";
 import * as itemsDB from "./itemsDB";
 
@@ -16,7 +16,7 @@ describe("items lib",() => {
             const newItems = await libConfig.handleDependencyChange({user, userPrefs: {}}, items);
 
             expect(newItems).toBe(items);
-            expect(newItems.items).toBeUndefined(); 
+            expect(newItems!.items).toBeUndefined(); 
         });
 
         it("should fetch items for newely set product", async () => {

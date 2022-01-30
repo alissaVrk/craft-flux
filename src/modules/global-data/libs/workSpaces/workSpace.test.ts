@@ -1,5 +1,5 @@
 import { arrayToMap } from "modules/global-data/dataStructureUtils";
-import { WorkSpace } from "../../types";
+import { WorkSpace } from "../../dataTypes";
 import {libConfig} from "./workSpace";
 import * as workSpaceDB from "./workSpaceDB"
 

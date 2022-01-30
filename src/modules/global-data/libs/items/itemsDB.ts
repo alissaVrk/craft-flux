@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getDefaultAxiosConfig } from "core/axios-defaults";
-import { Item } from "../../types";
+import { Item } from "../../dataTypes";
 
 export async function fetchAll(productId: string, userId: string): Promise<Item[]> {
     const result = await axios.post("sync/update", {

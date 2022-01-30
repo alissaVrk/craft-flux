@@ -1,18 +1,19 @@
 import { MapFullImmutable } from "data-structures";
 import { uniqueId } from "lodash";
 import { fetchAll } from "./workSpaceDB";
-import { LibConfig, WorkSpace } from "../../types";
+import { WorkSpace } from "../../dataTypes";
+import { LibConfig, Libs } from "../../LibsTypes";
 
 export const name = uniqueId("userPrefs_");
 
-export const libConfig: LibConfig<"producs", never> = {
+export const libConfig: LibConfig<Libs["producs"], Libs, never> = {
     dependencies: [],
 
-    init: () => new MapFullImmutable<WorkSpace>(),
+    init: () => new MapFullImmutable<string, WorkSpace>(),
 
     handleDependencyChange: async  () => {
         const items = await fetchAll();
-        const newItemsMap = new MapFullImmutable<WorkSpace>();
+        const newItemsMap = new MapFullImmutable<string, WorkSpace>();
         newItemsMap.init(items);
         return newItemsMap;
     }
